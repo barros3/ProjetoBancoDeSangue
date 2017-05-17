@@ -1,4 +1,4 @@
-package br.com.ufsc.pdvfast.telas;
+package view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -27,13 +27,13 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
-import br.com.ufsc.pdvfast.BancoDeDados;
-import br.com.ufsc.pdvfast.CadastroDeClientes;
-import br.com.ufsc.pdvfast.CadastroDeVendas;
-import br.com.ufsc.pdvfast.Cliente;
-import br.com.ufsc.pdvfast.ItemVenda;
-import br.com.ufsc.pdvfast.Produto;
-import br.com.ufsc.pdvfast.Venda;
+import model.BancoDeDados;
+import model.CadastroDeClientes;
+import model.CadastroDeVendas;
+import model.Cliente;
+import model.ItemVenda;
+import model.Produto;
+import model.Venda;
 
 public class TelaVendas extends JInternalFrame {
 

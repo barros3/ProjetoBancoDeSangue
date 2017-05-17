@@ -1,4 +1,4 @@
-package br.com.ufsc.pdvfast.telas;
+package view;
 
 import java.awt.Color;
 import java.awt.ComponentOrientation;
@@ -19,8 +19,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.text.MaskFormatter;
 
-import br.com.ufsc.pdvfast.CadastroDeProdutos;
-import br.com.ufsc.pdvfast.Produto;
+import model.CadastroDeProdutos;
+import model.Produto;
 
 public class TelaCadastroProduto extends JInternalFrame {
 

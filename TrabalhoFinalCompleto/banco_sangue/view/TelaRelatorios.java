@@ -1,4 +1,4 @@
-package br.com.ufsc.pdvfast.telas;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -19,12 +19,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import br.com.ufsc.pdvfast.BancoDeDados;
-import br.com.ufsc.pdvfast.Cliente;
-import br.com.ufsc.pdvfast.ComparatorIdCliente;
-import br.com.ufsc.pdvfast.ComparatorVenda;
-import br.com.ufsc.pdvfast.Produto;
-import br.com.ufsc.pdvfast.Venda;
+
+import model.BancoDeDados;
+import model.Cliente;
+import model.ComparatorIdCliente;
+import model.ComparatorVenda;
+import model.Produto;
+import model.Venda;
 
 @SuppressWarnings("unused")
 public class TelaRelatorios {

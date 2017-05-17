@@ -1,4 +1,4 @@
-package br.com.ufsc.pdvfast;
+package model;
 
 public class EntradaEstoque {
 

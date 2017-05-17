@@ -1,4 +1,4 @@
-package br.com.ufsc.pdvfast.telas;
+package view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -21,8 +21,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
-import br.com.ufsc.pdvfast.BancoDeDados;
-import br.com.ufsc.pdvfast.Cliente;
+import model.BancoDeDados;
+import model.Cliente;
 
 public class TelaListaCadastroCliente extends JInternalFrame {
 

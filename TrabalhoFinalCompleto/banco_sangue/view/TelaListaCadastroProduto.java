@@ -1,4 +1,4 @@
-package br.com.ufsc.pdvfast.telas;
+package view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -17,8 +17,10 @@ import javax.swing.JTable;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
-import br.com.ufsc.pdvfast.BancoDeDados;
-import br.com.ufsc.pdvfast.Produto;
+
+import model.BancoDeDados;
+import model.Produto;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

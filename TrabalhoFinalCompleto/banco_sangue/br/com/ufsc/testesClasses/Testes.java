@@ -6,11 +6,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import br.com.ufsc.pdvfast.BancoDeDados;
-import br.com.ufsc.pdvfast.Venda;
-import br.com.ufsc.pdvfast.telas.TelaListaCadastroCliente;
-import br.com.ufsc.pdvfast.telas.TelaListaCadastroVenda;
-import br.com.ufsc.pdvfast.telas.TelaVendas;
+
+import model.BancoDeDados;
+import model.Venda;
+import view.TelaListaCadastroCliente;
+import view.TelaListaCadastroVenda;
+import view.TelaVendas;
 
 //import java.util.Collection;
 //import java.util.HashMap;

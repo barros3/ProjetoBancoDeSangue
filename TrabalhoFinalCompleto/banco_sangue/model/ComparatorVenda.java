@@ -1,4 +1,4 @@
-package br.com.ufsc.pdvfast;
+package model;
 
 import java.util.Comparator;
 

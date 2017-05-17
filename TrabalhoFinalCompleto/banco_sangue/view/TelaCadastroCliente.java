@@ -1,4 +1,4 @@
-package br.com.ufsc.pdvfast.telas;
+package view;
 
 import java.awt.Color;
 import java.awt.ComponentOrientation;
@@ -20,8 +20,9 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.text.MaskFormatter;
-import br.com.ufsc.pdvfast.CadastroDeClientes;
-import br.com.ufsc.pdvfast.Cliente;
+
+import model.CadastroDeClientes;
+import model.Cliente;
 
 public class TelaCadastroCliente extends JInternalFrame {
 
