@@ -19,6 +19,21 @@ public class BancoDeDados implements Serializable {
 	/************************************************************/
 	/* METÓDOS PARA VERIFICAR SE PASTA E BANCO DE DADOS EXISTEM */
 	/************************************************************/
+	
+	public static void verificaBDPessoa() throws IOException {
+		File diretorio = new File("arqBD");
+		File arquivo = new File("arqBD\\Pessoa.dat");
+		
+		if (!diretorio.exists()){
+			diretorio.mkdir();
+		}
+		if (!arquivo.exists()) {
+			arquivo.createNewFile();
+		}
+		
+	}
+	
+	
 	public static void verificaBancoDadosClientes() throws IOException {
 		File diretorio = new File("arquivosBD");
 		File arquivo = new File("arquivosBD\\Cliente.dat");
@@ -64,6 +79,17 @@ public class BancoDeDados implements Serializable {
 	/******************************************************/
 	/* METÓDOS PARA GRAVAR DADOS NO BANCO DE DADOS CRIADO */
 	/******************************************************/
+	
+	public static void gravaPessoaBD(Map<Integer, Pessoa> cadastroPessoa) throws Exception {
+		FileOutputStream arquivo = new FileOutputStream("arqBD\\Pessoa.dat");
+		ObjectOutputStream streamObjeto = new ObjectOutputStream(arquivo);
+		
+		streamObjeto.writeObject(cadastroPessoa);
+		streamObjeto.close();
+		arquivo.close();
+	}
+	
+	
 	public static void gravaClienteBancoDados(Map<Integer, Cliente> cadastroClientes) throws Exception {
 		FileOutputStream arquivo = new FileOutputStream("arquivosBD\\Cliente.dat");
 		ObjectOutputStream streamObjeto = new ObjectOutputStream(arquivo);
@@ -99,6 +125,19 @@ public class BancoDeDados implements Serializable {
 	 * @return
 	 *************************************************************************/
 
+	@SuppressWarnings("unchecked")
+	public static Object buscaBDPessoa() throws Exception {
+		FileInputStream abrirArquivo = new FileInputStream("arqBD\\Pessoa.dat");
+		ObjectInputStream abrirObjeto = new ObjectInputStream(abrirArquivo);
+		
+		Object mapPessoa = (Map<Integer, Pessoa>) abrirObjeto.readObject();
+		
+		abrirObjeto.close();
+		abrirArquivo.close();
+		return mapPessoa;
+		
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static Object buscaBancoDadosClientes() throws Exception {
 		FileInputStream abrirArquivo = new FileInputStream("arquivosBD\\Cliente.dat");

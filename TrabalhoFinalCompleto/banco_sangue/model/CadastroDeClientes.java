@@ -14,7 +14,7 @@ public class CadastroDeClientes implements Serializable {
 
 	private Map<Integer, Cliente> cadastroClientes = new HashMap<Integer, Cliente>();
 	public static int finalCliente = 1;
-	public static Cliente clienteVenda;
+	//public static Cliente clienteVenda;
 	
 	@SuppressWarnings("unchecked")
 	public static int getTamanhoBancoCliente() throws Exception {
