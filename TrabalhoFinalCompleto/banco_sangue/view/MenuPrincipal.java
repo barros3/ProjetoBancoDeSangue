@@ -210,23 +210,24 @@ public class MenuPrincipal extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		JButton btnAdicionaCliente = new JButton("");
-		btnAdicionaCliente.addActionListener(new ActionListener() {
+		JButton btnAdicionaPessoa = new JButton("");
+		btnAdicionaPessoa.setToolTipText("Cadastrar Pessoas");
+		btnAdicionaPessoa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaCadastroCliente cadastroDoCliente = null;
+				TelaCadastroPessoa cadastroDaPessoa = null;
 				try {
-					cadastroDoCliente = new TelaCadastroCliente();
+					cadastroDaPessoa = new TelaCadastroPessoa();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				desktopPane.add(cadastroDoCliente);
-				cadastroDoCliente.setVisible(true);
+				desktopPane.add(cadastroDaPessoa);
+				cadastroDaPessoa.setVisible(true);
 			}
 		});
-		btnAdicionaCliente.setIcon(new ImageIcon("icon/add_contact.png"));
-		btnAdicionaCliente.setBounds(94, 10, 64, 64);
-		panel.add(btnAdicionaCliente);
+		btnAdicionaPessoa.setIcon(new ImageIcon("icon/add_contact.png"));
+		btnAdicionaPessoa.setBounds(94, 10, 64, 64);
+		panel.add(btnAdicionaPessoa);
 
 		JButton btnAdicionarProduto = new JButton("");
 		btnAdicionarProduto.addActionListener(new ActionListener() {
