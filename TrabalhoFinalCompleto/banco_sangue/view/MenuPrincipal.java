@@ -96,26 +96,26 @@ public class MenuPrincipal extends JFrame {
 		});
 		mnListaCadastrosGeral.add(mntmCadastroGeralListaPessoa);
 
-		JMenuItem mntmCadastroGeralListaProduto = new JMenuItem("Produtos");
-		mntmCadastroGeralListaProduto.addActionListener(new ActionListener() {
+		JMenuItem mntmCadastroGeralListaTpSangue = new JMenuItem("Tipo de Sangue");
+		mntmCadastroGeralListaTpSangue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaListaCadastroProduto listaProduto = null;
+				TelaListaCadastroTipoSangue listaTpSangue = null;
 				try {
-					listaProduto = new TelaListaCadastroProduto();
-					listaProduto.loadTableListaProduto();
+					listaTpSangue = new TelaListaCadastroTipoSangue();
+					listaTpSangue.loadTableListaTpSangue();
 				} catch (Exception p) {
 					p.printStackTrace();
 				}
-				desktopPane.add(listaProduto);
-				listaProduto.setVisible(true);
+				desktopPane.add(listaTpSangue);
+				listaTpSangue.setVisible(true);
 			}
 		});
-		mnListaCadastrosGeral.add(mntmCadastroGeralListaProduto);
+		mnListaCadastrosGeral.add(mntmCadastroGeralListaTpSangue);
 
 		JMenu mnCadastrarNovo = new JMenu("Cadastrar");
 		mnCadastro.add(mnCadastrarNovo);
 
-		JMenuItem mntmPessoa = new JMenuItem("Nova Pessoa");
+		JMenuItem mntmPessoa = new JMenuItem("Pessoa");
 		mnCadastrarNovo.add(mntmPessoa);
 		mntmPessoa.setHorizontalAlignment(SwingConstants.LEFT);
 		mntmPessoa.setHorizontalTextPosition(SwingConstants.LEFT);
@@ -134,13 +134,13 @@ public class MenuPrincipal extends JFrame {
 		});
 		mntmPessoa.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
-		JMenuItem mntmProduto = new JMenuItem("Novo Produto");
-		mnCadastrarNovo.add(mntmProduto);
-		mntmProduto.addActionListener(new ActionListener() {
+		JMenuItem mntmTipoSangue = new JMenuItem("Tipo Sanguineo");
+		mnCadastrarNovo.add(mntmTipoSangue);
+		mntmTipoSangue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaCadastroProduto cadastroDoProduto = null;
+				TelaCadastroTipoSangue cadastroTipoSanguineo = null;
 				try {
-					cadastroDoProduto = new TelaCadastroProduto();
+					cadastroTipoSanguineo = new TelaCadastroTipoSangue();
 				} catch (PropertyVetoException e1) {
 					e1.printStackTrace();
 				} catch (ParseException e1) {
@@ -149,13 +149,13 @@ public class MenuPrincipal extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				desktopPane.add(cadastroDoProduto);
-				cadastroDoProduto.setVisible(true);
+				desktopPane.add(cadastroTipoSanguineo);
+				cadastroTipoSanguineo.setVisible(true);
 			}
 		});
-		mntmProduto.setHorizontalTextPosition(SwingConstants.LEFT);
-		mntmProduto.setHorizontalAlignment(SwingConstants.LEFT);
-		mntmProduto.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		mntmTipoSangue.setHorizontalTextPosition(SwingConstants.LEFT);
+		mntmTipoSangue.setHorizontalAlignment(SwingConstants.LEFT);
+		mntmTipoSangue.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
 		JMenu mnVendas = new JMenu("Vendas");
 		mnCadastro.add(mnVendas);

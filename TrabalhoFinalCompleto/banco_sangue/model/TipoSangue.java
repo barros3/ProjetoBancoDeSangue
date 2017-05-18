@@ -10,9 +10,8 @@ public class TipoSangue implements Serializable, Comparable<TipoSangue>{
 	private double estoque = 0;
 	private double totalEstoque = 0;
 	
-	public TipoSangue(String tipoSangue, double estoque) {
+	public TipoSangue(String tipoSangue) {
 		setTipoSangue(tipoSangue);
-		setEstoque(estoque);
 	}
 
 	public TipoSangue(int idTpSangue, String tipoSangue, double estoque) {
