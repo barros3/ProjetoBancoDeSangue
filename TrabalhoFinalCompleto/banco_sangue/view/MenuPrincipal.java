@@ -24,6 +24,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.JDesktopPane;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class MenuPrincipal extends JFrame {
 
@@ -54,9 +56,9 @@ public class MenuPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuPrincipal() {
-		setName("PdvFast");
-		setTitle("PDVFast");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("icon\\window.png"));
+		setName("BancoSangue");
+		setTitle("Banco de Sangue 1.0");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("icon\\iconfinal.fw.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 720);
 		contentPane = new JPanel();
@@ -77,24 +79,24 @@ public class MenuPrincipal extends JFrame {
 		mnCadastro.setBorder(null);
 		menuBar.add(mnCadastro);
 
-		JMenu mnListaCadastrosGeral = new JMenu("Cadastros");
+		JMenu mnListaCadastrosGeral = new JMenu("Listas");
 		mnCadastro.add(mnListaCadastrosGeral);
 
-		JMenuItem mntmCadastroGeralListaCliente = new JMenuItem("Clientes");
-		mntmCadastroGeralListaCliente.addActionListener(new ActionListener() {
+		JMenuItem mntmCadastroGeralListaPessoa = new JMenuItem("Pessoas");
+		mntmCadastroGeralListaPessoa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				TelaListaCadastroCliente listaCliente = null;
+				TelaListaCadastroPessoa listaPessoa = null;
 				try {
-					listaCliente = new TelaListaCadastroCliente();
-					listaCliente.loadTableListaCliente();
+					listaPessoa = new TelaListaCadastroPessoa();
+					listaPessoa.loadTableListaPessoa();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				desktopPane.add(listaCliente);
-				listaCliente.setVisible(true);
+				desktopPane.add(listaPessoa);
+				listaPessoa.setVisible(true);
 			}
 		});
-		mnListaCadastrosGeral.add(mntmCadastroGeralListaCliente);
+		mnListaCadastrosGeral.add(mntmCadastroGeralListaPessoa);
 
 		JMenuItem mntmCadastroGeralListaProduto = new JMenuItem("Produtos");
 		mntmCadastroGeralListaProduto.addActionListener(new ActionListener() {
@@ -115,24 +117,24 @@ public class MenuPrincipal extends JFrame {
 		JMenu mnCadastrarNovo = new JMenu("Cadastrar");
 		mnCadastro.add(mnCadastrarNovo);
 
-		JMenuItem mntmCliente = new JMenuItem("Novo Cliente");
-		mnCadastrarNovo.add(mntmCliente);
-		mntmCliente.setHorizontalAlignment(SwingConstants.LEFT);
-		mntmCliente.setHorizontalTextPosition(SwingConstants.LEFT);
-		mntmCliente.addActionListener(new ActionListener() {
+		JMenuItem mntmPessoa = new JMenuItem("Nova Pessoa");
+		mnCadastrarNovo.add(mntmPessoa);
+		mntmPessoa.setHorizontalAlignment(SwingConstants.LEFT);
+		mntmPessoa.setHorizontalTextPosition(SwingConstants.LEFT);
+		mntmPessoa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaCadastroCliente cadastroDoCliente = null;
+				TelaCadastroPessoa cadastroPessoa = null;
 				try {
-					cadastroDoCliente = new TelaCadastroCliente();
+					cadastroPessoa = new TelaCadastroPessoa();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				desktopPane.add(cadastroDoCliente);
-				cadastroDoCliente.setVisible(true);
+				desktopPane.add(cadastroPessoa);
+				cadastroPessoa.setVisible(true);
 			}
 		});
-		mntmCliente.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		mntmPessoa.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
 		JMenuItem mntmProduto = new JMenuItem("Novo Produto");
 		mnCadastrarNovo.add(mntmProduto);
@@ -203,7 +205,7 @@ public class MenuPrincipal extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 24, 1367, 84);
 		panel.setVerifyInputWhenFocusTarget(false);
-		panel.setBackground(new Color(0, 128, 128));
+		panel.setBackground(new Color(128, 0, 0));
 		panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -271,5 +273,11 @@ public class MenuPrincipal extends JFrame {
 		btnVendas.setBounds(10, 10, 64, 64);
 		panel.add(btnVendas);
 		panel.setVerifyInputWhenFocusTarget(false);
+		
+		JLabel lblBancoDeSangue = new JLabel("Banco de Sangue 1.0 - UFSC");
+		lblBancoDeSangue.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblBancoDeSangue.setForeground(new Color(255, 255, 255));
+		lblBancoDeSangue.setBounds(661, 46, 330, 27);
+		panel.add(lblBancoDeSangue);
 	}
 }

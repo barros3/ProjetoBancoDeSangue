@@ -24,6 +24,15 @@ public class Pessoa implements Serializable, Comparable<Pessoa> {
 		this.totalDoacao += totalDoacao;
 	}
 	
+	public Pessoa(String nome, String cpf, String telefone, String email, String endereco, String tipoSangue) {
+		setNome(nome);
+		setCpf(cpf);
+		setTelefone(telefone);
+		setEmail(email);
+		setEndereco(endereco);
+		setTipoSangue(tipoSangue);
+	}
+	
 	
 	public Pessoa(int idPessoa, String nome, String cpf, String telefone, String email, String endereco, String tipoSangue) {
 		setIdPessoa(idPessoa);
@@ -33,6 +42,10 @@ public class Pessoa implements Serializable, Comparable<Pessoa> {
 		setEmail(email);
 		setEndereco(endereco);
 		setTipoSangue(tipoSangue);
+	}
+	
+	public Pessoa() {
+
 	}
 	
 	public int getIdPessoa() {
