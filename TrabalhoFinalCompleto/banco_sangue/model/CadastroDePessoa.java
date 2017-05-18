@@ -11,7 +11,6 @@ public class CadastroDePessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Map<Integer, Pessoa> cadastroPessoa = new HashMap<Integer, Pessoa>();
 	public static int finalPessoa = 1;
-	//public static Pessoa pessoaDoador;
 	
 	@SuppressWarnings("unchecked")
 	public static int getTamanhoBancoPessoa() throws Exception {

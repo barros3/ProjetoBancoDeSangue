@@ -33,48 +33,19 @@ public class BancoDeDados implements Serializable {
 		
 	}
 	
-	
-	public static void verificaBancoDadosClientes() throws IOException {
-		File diretorio = new File("arquivosBD");
-		File arquivo = new File("arquivosBD\\Cliente.dat");
-
-		if (!diretorio.exists()) {
+	public static void verificaBDTipoSangue() throws IOException {
+		File diretorio = new File("arqBD");
+		File arquivo = new File("arqBD\\TipoSangue.dat");
+		
+		if (!diretorio.exists()){
 			diretorio.mkdir();
 		}
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
+		
 	}
-
-	public static void verificaBancoDadosProdutos() throws IOException {
-		File diretorio = new File("arquivosBD");
-		File arquivo = new File("arquivosBD\\Produto.dat");
-		try {
-			if (!diretorio.exists()) {
-				diretorio.mkdir();
-			}
-			if (!arquivo.exists()) {
-				arquivo.createNewFile();
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
-
-	public static void verificaBancoDadosVendas() throws IOException {
-		File diretorio = new File("arquivosBD");
-		File arquivo = new File("arquivosBD\\Venda.dat");
-		try {
-			if (!diretorio.exists()) {
-				diretorio.mkdir();
-			}
-			if (!arquivo.exists()) {
-				arquivo.createNewFile();
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
+	
 
 	/******************************************************/
 	/* METÓDOS PARA GRAVAR DADOS NO BANCO DE DADOS CRIADO */
@@ -89,34 +60,16 @@ public class BancoDeDados implements Serializable {
 		arquivo.close();
 	}
 	
+	public static void gravaTipoSangueBD(Map<Integer, TipoSangue> cadastroTpSangue) throws Exception {
+		FileOutputStream arquivo = new FileOutputStream("arqBD\\TipoSangue.dat");
+		ObjectOutputStream streamObjeto = new ObjectOutputStream(arquivo);
+		
+		streamObjeto.writeObject(cadastroTpSangue);
+		streamObjeto.close();
+		arquivo.close();
+	}
 	
-	public static void gravaClienteBancoDados(Map<Integer, Cliente> cadastroClientes) throws Exception {
-		FileOutputStream arquivo = new FileOutputStream("arquivosBD\\Cliente.dat");
-		ObjectOutputStream streamObjeto = new ObjectOutputStream(arquivo);
-
-		streamObjeto.writeObject(cadastroClientes);
-		streamObjeto.close();
-		arquivo.close();
-	}
-
-	public static void gravaProdutoBancoDados(Map<Integer, Produto> cadastroProdutos) throws Exception {
-		FileOutputStream arquivo = new FileOutputStream("arquivosBD\\Produto.dat");
-		ObjectOutputStream streamObjeto = new ObjectOutputStream(arquivo);
-
-		streamObjeto.writeObject(cadastroProdutos);
-		streamObjeto.close();
-		arquivo.close();
-	}
-
-	public static void gravaVendaBancoDados(Map<Integer, Venda> cadastroVendas) throws Exception {
-		FileOutputStream arquivo = new FileOutputStream("arquivosBD\\Venda.dat");
-		ObjectOutputStream streamObjeto = new ObjectOutputStream(arquivo);
-
-		streamObjeto.writeObject(cadastroVendas);
-		streamObjeto.close();
-		arquivo.close();
-	}
-
+	
 	/***************************************************************************/
 	/*
 	 * METÓDOS PARA DESERIALIZAR O BANCO DE DADOS E FAZER A LEITURA DOS OBJETOS.
@@ -135,6 +88,19 @@ public class BancoDeDados implements Serializable {
 		abrirObjeto.close();
 		abrirArquivo.close();
 		return mapPessoa;
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static Object buscaDBTipoSangue() throws Exception {
+		FileInputStream abrirArquivo = new FileInputStream("arqBD\\TipoSangue.dat");
+		ObjectInputStream abrirObjeto = new ObjectInputStream(abrirArquivo);
+		
+		Object mapTipoSangue = (Map<Integer, TipoSangue>) abrirObjeto.readObject();
+		
+		abrirObjeto.close();
+		abrirArquivo.close();
+		return mapTipoSangue;
 		
 	}
 	
