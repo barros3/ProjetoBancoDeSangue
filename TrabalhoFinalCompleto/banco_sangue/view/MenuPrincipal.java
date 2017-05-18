@@ -29,9 +29,7 @@ import java.awt.Font;
 
 public class MenuPrincipal extends JFrame {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	protected static final Component Internal = null;
 	private JPanel contentPane;
