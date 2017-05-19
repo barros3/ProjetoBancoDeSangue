@@ -1,4 +1,4 @@
-package model;
+package controller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,6 +9,12 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Map;
 
+import model.Cliente;
+import model.Pessoa;
+import model.Produto;
+import model.TipoSangue;
+import model.Venda;
+
 public class BancoDeDados implements Serializable {
 
 	/**
@@ -16,9 +22,9 @@ public class BancoDeDados implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/************************************************************/
-	/* METÓDOS PARA VERIFICAR SE PASTA E BANCO DE DADOS EXISTEM */
-	/************************************************************/
+	/*
+	 * Verificar se o banco de dados existe
+	 */
 	
 	public static void verificaBDPessoa() throws IOException {
 		File diretorio = new File("arqBD");
@@ -47,9 +53,9 @@ public class BancoDeDados implements Serializable {
 	}
 	
 
-	/******************************************************/
-	/* METÓDOS PARA GRAVAR DADOS NO BANCO DE DADOS CRIADO */
-	/******************************************************/
+	/*
+	 * Gravar no banco de dados
+	 */
 	
 	public static void gravaPessoaBD(Map<Integer, Pessoa> cadastroPessoa) throws Exception {
 		FileOutputStream arquivo = new FileOutputStream("arqBD\\Pessoa.dat");
@@ -70,13 +76,10 @@ public class BancoDeDados implements Serializable {
 	}
 	
 	
-	/***************************************************************************/
 	/*
-	 * METÓDOS PARA DESERIALIZAR O BANCO DE DADOS E FAZER A LEITURA DOS OBJETOS.
-	 */
-	/**
+	 * Buscano banco de dados
 	 * @return
-	 *************************************************************************/
+	 */
 
 	@SuppressWarnings("unchecked")
 	public static Object buscaBDPessoa() throws Exception {

@@ -21,7 +21,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.text.MaskFormatter;
 
-import model.CadastroDePessoa;
+import controller.CadastroDePessoa;
 import model.Pessoa;
 
 public class TelaCadastroPessoa extends JInternalFrame {

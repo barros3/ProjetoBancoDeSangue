@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import controller.BancoDeDados;
+
 public class CadastroDeVendas implements Serializable {
 	/**
 	 * 

@@ -27,7 +27,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
-import model.BancoDeDados;
+import controller.BancoDeDados;
 import model.CadastroDeClientes;
 import model.CadastroDeVendas;
 import model.Cliente;

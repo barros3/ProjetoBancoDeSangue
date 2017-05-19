@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import model.BancoDeDados;
 import model.TipoSangue;
 
 public class CadastroTipoSangue implements Serializable {

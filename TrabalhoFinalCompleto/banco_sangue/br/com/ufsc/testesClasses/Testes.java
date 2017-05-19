@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import model.BancoDeDados;
+import controller.BancoDeDados;
 import model.Venda;
 import view.TelaListaCadastroCliente;
 import view.TelaListaCadastroVenda;

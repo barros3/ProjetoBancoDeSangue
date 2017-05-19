@@ -21,7 +21,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
-import model.BancoDeDados;
+import controller.BancoDeDados;
 import model.TipoSangue;
 
 public class TelaListaCadastroTipoSangue extends JInternalFrame {
@@ -53,7 +53,7 @@ public class TelaListaCadastroTipoSangue extends JInternalFrame {
 		});
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void loadTableListaTpSangue() throws Exception {
 		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {},
 				new String[] { "ID", "Tipo Sanguineo", "Estoque (Litros)"});
@@ -79,7 +79,7 @@ public class TelaListaCadastroTipoSangue extends JInternalFrame {
 		for (int i = 0; i < tableTipoSangue.getRowCount(); i++) {
 			int idTpSangue = (int) tableTipoSangue.getValueAt(i, 0);
 			String tipoSangue = (String) tableTipoSangue.getValueAt(i, 1);
-			Double estoque = (Double) tableTipoSangue.getValueAt(i, 2);
+			double estoque = (double) tableTipoSangue.getValueAt(i, 2);
 			TipoSangue tpSangueAtualizado = new TipoSangue(idTpSangue, tipoSangue, estoque);
 			mapaAtualizaTpSangue.put(tpSangueAtualizado.getIdTpSangue(), tpSangueAtualizado);
 		}

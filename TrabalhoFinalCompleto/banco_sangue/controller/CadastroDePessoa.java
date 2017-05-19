@@ -1,10 +1,12 @@
-package model;
+package controller;
 
 import java.io.EOFException;
 import java.io.File;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+
+import model.Pessoa;
 
 public class CadastroDePessoa implements Serializable {
 	
