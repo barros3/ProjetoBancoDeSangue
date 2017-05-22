@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Map;
 
-import model.Cliente;
+import model.Doacao;
 import model.Pessoa;
 import model.Produto;
 import model.TipoSangue;
@@ -52,6 +52,19 @@ public class BancoDeDados implements Serializable {
 		
 	}
 	
+	public static void verificaBDDoacao() throws IOException {
+		File diretorio = new File("arqBD");
+		File arquivo = new File("arqBD\\Doacao.dat");
+		
+		if (!diretorio.exists()){
+			diretorio.mkdir();
+		}
+		if (!arquivo.exists()) {
+			arquivo.createNewFile();
+		}
+		
+	}
+	
 
 	/*
 	 * Gravar no banco de dados
@@ -71,6 +84,15 @@ public class BancoDeDados implements Serializable {
 		ObjectOutputStream streamObjeto = new ObjectOutputStream(arquivo);
 		
 		streamObjeto.writeObject(cadastroTpSangue);
+		streamObjeto.close();
+		arquivo.close();
+	}
+	
+	public static void gravaDoacaoBD(Map<Integer, Doacao> cadastroDoacao) throws Exception {
+		FileOutputStream arquivo = new FileOutputStream("arqBD\\Doacao.dat");
+		ObjectOutputStream streamObjeto = new ObjectOutputStream(arquivo);
+		
+		streamObjeto.writeObject(cadastroDoacao);
 		streamObjeto.close();
 		arquivo.close();
 	}
@@ -108,16 +130,17 @@ public class BancoDeDados implements Serializable {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static Object buscaBancoDadosClientes() throws Exception {
-		FileInputStream abrirArquivo = new FileInputStream("arquivosBD\\Cliente.dat");
+	public static Object buscaBBDoacao() throws Exception {
+		FileInputStream abrirArquivo = new FileInputStream("arquivosBD\\Doacao.dat");
 		ObjectInputStream abrirObjeto = new ObjectInputStream(abrirArquivo);
 
-		Object mapClientes = (Map<Integer, Cliente>) abrirObjeto.readObject();
+		Object mapDoacao = (Map<Integer, Doacao>) abrirObjeto.readObject();
 
 		abrirObjeto.close();
 		abrirArquivo.close();
-		return mapClientes;
+		return mapDoacao;
 	}
+	
 
 	@SuppressWarnings("unchecked")
 	public static Object buscaBancoDadosProdutos() throws Exception {
