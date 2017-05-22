@@ -5,10 +5,13 @@ import java.io.Serializable;
 public class Doacao extends Pessoa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	public ArrayList<NovaDoacao> listaDoacao;
 	private int idDoacao;
 	private Pessoa pessoa;
 	private String DtDoacao;
 	private double qntdDoada;
+	
+	
 	
 	public int getIdDoacao() {
 		return idDoacao;
