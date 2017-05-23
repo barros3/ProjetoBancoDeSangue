@@ -56,7 +56,7 @@ public class TelaListaCadastroTipoSangue extends JInternalFrame {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void loadTableListaTpSangue() throws Exception {
 		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {},
-				new String[] { "ID", "Tipo Sanguineo", "Estoque (Litros)"});
+				new String[] { "ID", "Tipo Sanguineo"});
 
 		Map<Integer, TipoSangue> mapaTpSangue = new HashMap<Integer, TipoSangue>();
 		try {
@@ -65,7 +65,7 @@ public class TelaListaCadastroTipoSangue extends JInternalFrame {
 			Iterator interador = contC.iterator();
 			while (interador.hasNext()) {
 				TipoSangue tpSangueTemp = (TipoSangue) interador.next();
-				modelo.addRow(new Object[] { tpSangueTemp.getIdTpSangue(), tpSangueTemp.getTipoSangue(), tpSangueTemp.getEstoque() });
+				modelo.addRow(new Object[] { tpSangueTemp.getIdTpSangue(), tpSangueTemp.getTipoSangue() });
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());

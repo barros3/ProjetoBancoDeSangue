@@ -35,18 +35,16 @@ import model.ItemVenda;
 import model.Produto;
 import model.Venda;
 
-public class TelaVendas extends JInternalFrame {
+public class TelaDoacao extends JInternalFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private Label lbVendas;
-	private JTextField tfCliente;
+	private JTextField tfPessoa;
 	private JTextField tfProduto;
 	private JTextField tfQuantidade;
-	private JTextField tfValorProduto;
-	private JTextField tfValorTotal;
 	private JTable tablePesquista;
 	private JTable tablePesquista1;
 	private JTable tableVenda = new JTable();
@@ -84,7 +82,7 @@ public class TelaVendas extends JInternalFrame {
 
 				Cliente c = new Cliente(idCliente, nome, cpf, telefone, email, endereco);
 				CadastroDeClientes.clienteVenda = c;
-				tfCliente.setText(CadastroDeClientes.clienteVenda.getNome());
+				tfPessoa.setText(CadastroDeClientes.clienteVenda.getNome());
 
 			}
 
@@ -205,7 +203,7 @@ public class TelaVendas extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaVendas frame = new TelaVendas();
+					TelaDoacao frame = new TelaDoacao();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -217,7 +215,7 @@ public class TelaVendas extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaVendas() {
+	public TelaDoacao() {
 		setClosable(true);
 		setTitle("Tela de Doa\u00E7\u00E3o");
 		setName("Doacao");
@@ -231,34 +229,34 @@ public class TelaVendas extends JInternalFrame {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
-		JLabel lbCliente = new JLabel("Cliente:");
+		JLabel lbCliente = new JLabel("Pessoa:");
 		lbCliente.setBounds(39, 11, 42, 22);
 		panel.add(lbCliente);
 
-		tfCliente = new JTextField();
-		tfCliente.setBounds(39, 33, 300, 22);
-		panel.add(tfCliente);
-		tfCliente.setColumns(10);
+		tfPessoa = new JTextField();
+		tfPessoa.setBounds(39, 33, 300, 22);
+		panel.add(tfPessoa);
+		tfPessoa.setColumns(10);
 
-		JButton btnBuscarCliente = new JButton("");
-		btnBuscarCliente.addActionListener(new ActionListener() {
+		JButton btnBuscarPessoa = new JButton("");
+		btnBuscarPessoa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					tablePesquista1 = new JTable();
 					scrollPane.setViewportView(tablePesquista1);
-					loadTableCliente(tfCliente.getText());
+					loadTableCliente(tfPessoa.getText());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
 		});
-		btnBuscarCliente.setIcon(new ImageIcon("icon\\search.png"));
-		btnBuscarCliente.setBounds(349, 27, 32, 32);
-		panel.add(btnBuscarCliente);
+		btnBuscarPessoa.setIcon(new ImageIcon("icon\\search.png"));
+		btnBuscarPessoa.setBounds(349, 27, 32, 32);
+		panel.add(btnBuscarPessoa);
 
-		JLabel lbProduto = new JLabel("Produto:");
-		lbProduto.setBounds(39, 61, 50, 22);
-		panel.add(lbProduto);
+		JLabel lbTipoSanguineo = new JLabel("Tipo Sanguineo:");
+		lbTipoSanguineo.setBounds(39, 61, 195, 22);
+		panel.add(lbTipoSanguineo);
 
 		tfProduto = new JTextField();
 		tfProduto.setBounds(39, 83, 300, 22);
@@ -290,24 +288,6 @@ public class TelaVendas extends JInternalFrame {
 		panel.add(tfQuantidade);
 		tfQuantidade.setColumns(10);
 
-		tfValorProduto = new JFormattedTextField();
-		tfValorProduto.setBounds(507, 83, 80, 22);
-		panel.add(tfValorProduto);
-		tfValorProduto.setColumns(10);
-
-		JLabel lbValorProduto = new JLabel("Valor:");
-		lbValorProduto.setBounds(507, 61, 46, 22);
-		panel.add(lbValorProduto);
-
-		JLabel lblValorTotal = new JLabel("Valor total:");
-		lblValorTotal.setBounds(639, 345, 62, 22);
-		panel.add(lblValorTotal);
-
-		tfValorTotal = new JTextField();
-		tfValorTotal.setBounds(639, 367, 100, 22);
-		panel.add(tfValorTotal);
-		tfValorTotal.setColumns(10);
-
 		Label label = new Label("Pesquisa:");
 		label.setBounds(39, 115, 62, 22);
 		panel.add(label);
@@ -321,7 +301,7 @@ public class TelaVendas extends JInternalFrame {
 
 		scrollPane1.setViewportView(tableVenda);
 
-		JButton btnSalvar = new JButton("Add Carrinho");
+		JButton btnSalvar = new JButton("Add Doa\u00E7\u00E3o");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ItemVenda ivTemp = new ItemVenda();
@@ -337,10 +317,10 @@ public class TelaVendas extends JInternalFrame {
 				}
 			}
 		});
-		btnSalvar.setBounds(599, 83, 89, 23);
+		btnSalvar.setBounds(497, 83, 138, 23);
 		panel.add(btnSalvar);
 
-		JButton btnFinalizarVenda = new JButton("Finalizar Venda");
+		JButton btnFinalizarVenda = new JButton("Finalizar Doa\u00E7\u00E3o");
 		btnFinalizarVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				CadastroDeVendas cadastroDeVendas = new CadastroDeVendas();
@@ -364,10 +344,14 @@ public class TelaVendas extends JInternalFrame {
 		});
 		btnFinalizarVenda.setBounds(320, 362, 120, 32);
 		panel.add(btnFinalizarVenda);
+		
+		JLabel lblDoeSangueDoe = new JLabel("Doe sangue. Sangue \u00E9 vida.");
+		lblDoeSangueDoe.setBounds(10, 380, 138, 14);
+		panel.add(lblDoeSangueDoe);
 
 		lbVendas = new Label("Tela de Doa\u00E7\u00E3o");
 		lbVendas.setForeground(Color.WHITE);
-		lbVendas.setBackground(new Color(0, 128, 128));
+		lbVendas.setBackground(new Color(128, 0, 0));
 		lbVendas.setAlignment(Label.CENTER);
 		lbVendas.setFont(new Font("Arial", Font.BOLD, 18));
 		lbVendas.setBounds(0, 0, 798, 60);

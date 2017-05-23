@@ -76,11 +76,12 @@ public class TelaCadastroPessoa extends JInternalFrame {
 		getContentPane().setLayout(null);
 
 		lbCadastro = new Label("Cadastro de Pessoa");
+		lbCadastro.setForeground(Color.WHITE);
 		lbCadastro.setBackground(new Color(128, 0, 0));
 		lbCadastro.setBounds(0, 0, 598, 60);
 		getContentPane().add(lbCadastro);
 		lbCadastro.setName("CadastroDePessoa");
-		lbCadastro.setFont(new Font("Arial", Font.PLAIN, 18));
+		lbCadastro.setFont(new Font("Arial", Font.BOLD, 18));
 		lbCadastro.setAlignment(Label.CENTER);
 
 		JPanel panel = new JPanel();
