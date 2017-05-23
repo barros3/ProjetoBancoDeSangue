@@ -3,12 +3,13 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Doacao extends Pessoa implements Serializable {
+public class Doacao implements Serializable, Comparable<Doacao> {
 
 	private static final long serialVersionUID = 1L;
 	public ArrayList<NovaDoacao> listaDoacao;
 	private Pessoa pessoaDoar;
 	private int indice;
+	private String dtDoacao;
 	
 	public Doacao(){
 		this.listaDoacao = new ArrayList<NovaDoacao>();

@@ -1,4 +1,5 @@
-/model/
-/controller/
-/view/
 /br/
+/components/
+/controller/
+/model/
+/view/
