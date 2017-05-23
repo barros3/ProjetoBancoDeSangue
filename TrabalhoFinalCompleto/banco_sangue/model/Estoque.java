@@ -9,19 +9,19 @@ public class Estoque implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int quantidade;
-	List<Produto> produtosCadastrados;
+	private double quantidade;
+	List<TipoSangue> tiposSanguineos;
 
-	public Estoque(int quantidade) {
-		produtosCadastrados = new ArrayList<Produto>();
+	public Estoque(double quantidade) {
+		tiposSanguineos = new ArrayList<TipoSangue>();
 		setQuantidade(quantidade);
 	}
 
-	public int getQuantidade() {
+	public double getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(int quantidade) {
+	public void setQuantidade(double quantidade) {
 		this.quantidade = quantidade;
 	}
 

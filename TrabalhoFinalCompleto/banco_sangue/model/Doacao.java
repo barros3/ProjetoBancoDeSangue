@@ -1,43 +1,39 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Doacao extends Pessoa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	public ArrayList<NovaDoacao> listaDoacao;
-	private int idDoacao;
-	private Pessoa pessoa;
-	private String DtDoacao;
-	private double qntdDoada;
+	private Pessoa pessoaDoar;
+	private int indice;
 	
-	
-	
-	public int getIdDoacao() {
-		return idDoacao;
-	}
-	public void setIdDoacao(int idDoacao) {
-		this.idDoacao = idDoacao;
-	}
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
-	}
-	public String getDtDoacao() {
-		return DtDoacao;
-	}
-	public void setDtDoacao(String dtDoacao) {
-		DtDoacao = dtDoacao;
-	}
-	public double getQntdDoada() {
-		return qntdDoada;
-	}
-	public void setQntdDoada(double qntdDoada) {
-		this.qntdDoada = qntdDoada;
+	public Doacao(){
+		this.listaDoacao = new ArrayList<NovaDoacao>();
+		setPessoaDoar(new Pessoa());
 	}
 	
+	public ArrayList<NovaDoacao> getListaDoacao() {
+		return listaDoacao;
+	}
+	public void setListaDoacao(ArrayList<NovaDoacao> listaDoacao) {
+		this.listaDoacao = listaDoacao;
+	}
+	public Pessoa getPessoaDoar() {
+		return pessoaDoar;
+	}
+	public void setPessoaDoar(Pessoa pessoaDoar) {
+		this.pessoaDoar = pessoaDoar;
+	}
+	public int getIndice() {
+		return indice;
+	}
+	public void setIndice(int indice) {
+		this.indice = indice;
+	}
 	
+		
 
 }
