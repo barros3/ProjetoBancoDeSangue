@@ -3,12 +3,12 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Doacao implements Serializable, Comparable<Doacao> {
+public class Doacao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	public ArrayList<NovaDoacao> listaDoacao;
 	private Pessoa pessoaDoar;
-	private int indice;
+	private int idDoacao;
 	private String dtDoacao;
 	
 	public Doacao(){
@@ -28,13 +28,31 @@ public class Doacao implements Serializable, Comparable<Doacao> {
 	public void setPessoaDoar(Pessoa pessoaDoar) {
 		this.pessoaDoar = pessoaDoar;
 	}
-	public int getIndice() {
-		return indice;
+
+	public int getIdDoacao() {
+		return idDoacao;
 	}
-	public void setIndice(int indice) {
-		this.indice = indice;
+
+	public void setIdDoacao(int idDoacao) {
+		this.idDoacao = idDoacao;
+	}
+
+	public String getDtDoacao() {
+		return dtDoacao;
+	}
+
+	public void setDtDoacao(String dtDoacao) {
+		this.dtDoacao = dtDoacao;
 	}
 	
-		
+	public static int compareToId(int id, Doacao o) {
+		if (id < o.pessoaDoar.getIdPessoa()) {
+            return -1;
+        }
+        if (id > o.pessoaDoar.getIdPessoa()) {
+            return 1;
+        }
+		return 0;
+	}	
 
 }
