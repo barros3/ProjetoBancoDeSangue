@@ -157,24 +157,24 @@ public class MenuPrincipal extends JFrame {
 		mntmTipoSangue.setHorizontalAlignment(SwingConstants.LEFT);
 		mntmTipoSangue.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
-		JMenu mnVendas = new JMenu("Vendas");
-		mnCadastro.add(mnVendas);
+		JMenu mnDoação = new JMenu("Doa\u00E7\u00F5es");
+		mnCadastro.add(mnDoação);
 
-		JMenuItem mntmVendasConcluidas = new JMenuItem("Concluidas");
-		mntmVendasConcluidas.addActionListener(new ActionListener() {
+		JMenuItem mntmDoacaoConcluidas = new JMenuItem("Concluidas");
+		mntmDoacaoConcluidas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				TelaListaCadastroVenda listaVenda = null;
+				TelaListaCadastroDoacao listaDoacao = null;
 				try {
-					listaVenda = new TelaListaCadastroVenda();
-					listaVenda.loadTableListaItensVenda();
+					listaDoacao = new TelaListaCadastroDoacao();
+					listaDoacao.loadTableListaDoacao();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				desktopPane.add(listaVenda);
-				listaVenda.setVisible(true);
+				desktopPane.add(listaDoacao);
+				listaDoacao.setVisible(true);
 			}
 		});
-		mnVendas.add(mntmVendasConcluidas);
+		mnDoação.add(mntmDoacaoConcluidas);
 
 		JMenu mnConsulta = new JMenu("Relat\u00F3rios");
 		mnConsulta.setHorizontalAlignment(SwingConstants.CENTER);

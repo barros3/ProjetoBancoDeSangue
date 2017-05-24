@@ -15,7 +15,6 @@ import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -31,15 +30,10 @@ import controller.BancoDeDados;
 import controller.CadastroDeDoacao;
 import controller.CadastroDePessoa;
 import controller.CadastroTipoSangue;
-import model.CadastroDeClientes;
-import model.CadastroDeVendas;
 import model.Doacao;
 import model.Pessoa;
-import model.ItemVenda;
 import model.NovaDoacao;
-import model.Produto;
 import model.TipoSangue;
-import model.Venda;
 
 public class TelaDoacao extends JInternalFrame {
 
@@ -53,9 +47,8 @@ public class TelaDoacao extends JInternalFrame {
 	private JTextField tfQuantidade;
 	private JTable tablePesquista;
 	private JTable tablePesquista1;
-	private JTable tableVenda = new JTable();
+	private JTable tableDoacao = new JTable();
 	private Doacao doacao = new Doacao();
-	private Venda venda = new Venda();
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void loadTableCliente(String buscar) throws Exception {
@@ -109,34 +102,34 @@ public class TelaDoacao extends JInternalFrame {
 		});
 	}
 
-	/*public void loadTableItensVenda() throws Exception {
+	public void loadTableListaDoacao() throws Exception {
 		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {},
-				new String[] { "Id Doacao", "Tipo Sangue", "Quantidade Doada"});
+				new String[] { "Id Doação", "Nome", "CPF", "Telefone", "Email", "Endereço", "Tipo Sangue", "Quantidade", "Dt Doação" });
 
 		try {
 
-			for (int i = 0; i < venda.getListaVenda().size(); i++) {
-				ItemVenda vendaTemp = venda.getListaVenda().get(i);
-				modelo.addRow(new Object[] { vendaTemp.getIdItem(), vendaTemp.getProduto().getNomeProduto(),
-						vendaTemp.getQuantidade(),
-						(vendaTemp.getProduto().getValorProduto() * vendaTemp.getQuantidade()) });
+			for (int i = 0; i < doacao.getListaDoacao().size(); i++) {
+				NovaDoacao doacaoTemp = doacao.getListaDoacao().get(i);
+				modelo.addRow(new Object[] { doacaoTemp.getIdDoacao(), doacaoTemp.getPessoaDoar().getNome(), doacaoTemp.getPessoaDoar().getCpf(), 
+						doacaoTemp.getPessoaDoar().getTelefone(), doacaoTemp.getPessoaDoar().getEmail(), doacaoTemp.getPessoaDoar().getEndereco(),
+						doacaoTemp.getPessoaDoar().getTipoSangue(), doacaoTemp.getQtd(), doacaoTemp.getDtDoacao() });
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
 		}
-		tableVenda.setModel(modelo);
-		tableVenda.getColumnModel().getColumn(0).setPreferredWidth(50);
-		tableVenda.addMouseListener(new MouseListener() {
+		tableDoacao.setModel(modelo);
+		tableDoacao.getColumnModel().getColumn(0).setPreferredWidth(50);
+		tableDoacao.addMouseListener(new MouseListener() {
 			public void mouseClicked(MouseEvent e) {
-				int k = tableVenda.getSelectedRow();
-				int id = (int) tableVenda.getValueAt(k, 0);
-				venda.listaVenda.remove((id - 1));
-				for (int i = 0; i < venda.getListaVenda().size(); i++) {
-					ItemVenda vendaTemp = venda.getListaVenda().get(i);
-					vendaTemp.setIdItem((i + 1));
+				int k = tableDoacao.getSelectedRow();
+				int id = (int) tableDoacao.getValueAt(k, 0);
+				doacao.listaDoacao.remove((id - 1));
+				for (int i = 0; i < doacao.getListaDoacao().size(); i++) {
+					NovaDoacao doacaoTemp = doacao.getListaDoacao().get(i);
+					doacaoTemp.setIdDoacao((i + 1));
 				}
 				try {
-					loadTableItensVenda();
+					loadTableListaDoacao();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -157,7 +150,6 @@ public class TelaDoacao extends JInternalFrame {
 		});
 
 	}
-*/
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void loadTableProduto(String buscar) throws Exception {
 		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {},
@@ -307,7 +299,7 @@ public class TelaDoacao extends JInternalFrame {
 		scrollPane1.setBounds(39, 248, 700, 100);
 		panel.add(scrollPane1);
 
-		scrollPane1.setViewportView(tableVenda);
+		scrollPane1.setViewportView(tableDoacao);
 
 		JButton btnSalvar = new JButton("Add Doa\u00E7\u00E3o");
 		btnSalvar.addActionListener(new ActionListener() {
