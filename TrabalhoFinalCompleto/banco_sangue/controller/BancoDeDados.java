@@ -141,28 +141,4 @@ public class BancoDeDados implements Serializable {
 		return mapDoacao;
 	}
 	
-
-	@SuppressWarnings("unchecked")
-	public static Object buscaBancoDadosProdutos() throws Exception {
-		FileInputStream abrirArquivo = new FileInputStream("arquivosBD\\Produto.dat");
-		ObjectInputStream abrirObjeto = new ObjectInputStream(abrirArquivo);
-
-		Object mapProdutos = (Map<Integer, Produto>) abrirObjeto.readObject();
-
-		abrirObjeto.close();
-		abrirArquivo.close();
-		return mapProdutos;
-	}
-
-	@SuppressWarnings("unchecked")
-	public static Object buscaBancoDadosVendas() throws Exception {
-		FileInputStream abrirArquivo = new FileInputStream("arquivosBD\\Venda.dat");
-		ObjectInputStream abrirObjeto = new ObjectInputStream(abrirArquivo);
-
-		Object mapProdutos = (Map<Integer, Venda>) abrirObjeto.readObject();
-
-		abrirObjeto.close();
-		abrirArquivo.close();
-		return mapProdutos;
-	}
 }
