@@ -31,6 +31,7 @@ public class TelaCadastroTipoSangue extends JInternalFrame {
 	private JTextField tfTipoSangue;
 	private Label lbCadastro;
 	private JTextField tfId;
+	private JTextField tfQntdSangue;
 
 	/**
 	 * Launch the application.
@@ -128,12 +129,13 @@ public class TelaCadastroTipoSangue extends JInternalFrame {
 		panel.add(btnSalvarTipoSangue);
 		btnSalvarTipoSangue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TipoSangue tpSangue = new TipoSangue(tfTipoSangue.getText());
+				Double qntdSangue = Double.parseDouble(tfQntdSangue.getText());
+				TipoSangue tpSangue = new TipoSangue(tfTipoSangue.getText(), qntdSangue);
 				try {
 					cadastroTpSangue.adicionaTipoSangue(tpSangue);
 					tfId.setText("" + (CadastroTipoSangue.getTamanhoBancoTpSangue() + 1));
 					tfTipoSangue.setText("");
-					tfTipoSangue.requestFocus();
+					tfQntdSangue.setText("");
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
@@ -151,5 +153,16 @@ public class TelaCadastroTipoSangue extends JInternalFrame {
 		});
 		btFecharTelaCadastroCliente.setBounds(345, 266, 100, 23);
 		panel.add(btFecharTelaCadastroCliente);
+		
+		tfQntdSangue = new JTextField();
+		tfQntdSangue.setEditable(false);
+		tfQntdSangue.setColumns(10);
+		tfQntdSangue.setBounds(115, 117, 350, 22);
+		panel.add(tfQntdSangue);
+		
+		Label lbQntSangue = new Label("Qntd. Sangue:");
+		lbQntSangue.setAlignment(Label.RIGHT);
+		lbQntSangue.setBounds(10, 117, 98, 22);
+		panel.add(lbQntSangue);
 	}
 }

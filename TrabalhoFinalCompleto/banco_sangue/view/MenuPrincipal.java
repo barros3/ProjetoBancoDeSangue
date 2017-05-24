@@ -263,9 +263,9 @@ public class MenuPrincipal extends JFrame {
 		JButton btnVendas = new JButton("");
 		btnVendas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaVendas vendas = new TelaVendas();
-				desktopPane.add(vendas);
-				vendas.setVisible(true);
+				TelaDoacao doacao = new TelaDoacao();
+				desktopPane.add(doacao);
+				doacao.setVisible(true);
 			}
 		});
 		btnVendas.setIcon(new ImageIcon("icon/shopping_cart.png"));

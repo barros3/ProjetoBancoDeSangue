@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Pessoa implements Serializable, Comparable<Pessoa> {
+public class Pessoa implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private int idPessoa;
@@ -12,17 +12,7 @@ public class Pessoa implements Serializable, Comparable<Pessoa> {
 	private String email;
 	private String endereco;
 	private String tipoSangue;
-	private double qtdDoada = 0;
-	private double totalDoacao = 0;
-	private boolean doador = false;
-	
-	public double getTotalDoacao() {
-		return totalDoacao;
-	}
 
-	public void setTotalDoacao(double totalDoacao) {
-		this.totalDoacao += totalDoacao;
-	}
 	
 	public Pessoa(String nome, String cpf, String telefone, String email, String endereco, String tipoSangue) {
 		setNome(nome);
@@ -90,33 +80,6 @@ public class Pessoa implements Serializable, Comparable<Pessoa> {
 	public void setTipoSangue(String tipoSangue) {
 		this.tipoSangue = tipoSangue;
 	}
-	
-	public double getQtdDoada() {
-		return qtdDoada;
-	}
 
-	public void setQtdDoada(double qtdDoada) {
-		this.qtdDoada = qtdDoada;
-	}
-
-	public boolean getDoador() {
-		return doador;
-	}
-
-	public void setDoador(boolean doador) {
-		this.doador = doador;
-	}
-
-	@Override
-	public int compareTo(Pessoa o) {
-		if (this.getTotalDoacao() > o.getTotalDoacao()) {
-            return -1;
-        }
-        if (this.getTotalDoacao() < o.getTotalDoacao()) {
-            return 1;
-        }
-		return 0;
-	}
-	
 
 }

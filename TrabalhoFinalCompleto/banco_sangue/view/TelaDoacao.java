@@ -28,11 +28,17 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.BancoDeDados;
+import controller.CadastroDeDoacao;
+import controller.CadastroDePessoa;
+import controller.CadastroTipoSangue;
 import model.CadastroDeClientes;
 import model.CadastroDeVendas;
-import model.Cliente;
+import model.Doacao;
+import model.Pessoa;
 import model.ItemVenda;
+import model.NovaDoacao;
 import model.Produto;
+import model.TipoSangue;
 import model.Venda;
 
 public class TelaDoacao extends JInternalFrame {
@@ -48,22 +54,23 @@ public class TelaDoacao extends JInternalFrame {
 	private JTable tablePesquista;
 	private JTable tablePesquista1;
 	private JTable tableVenda = new JTable();
+	private Doacao doacao = new Doacao();
 	private Venda venda = new Venda();
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void loadTableCliente(String buscar) throws Exception {
 		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {},
-				new String[] { "ID", "Nome", "CPF", "Telefone", "Email", "Endereço" });
+				new String[] { "ID", "Nome", "CPF", "Telefone", "Email", "Endereço", "Tipo Sangue" });
 
-		Map<Integer, Cliente> mapaCliente = new HashMap<Integer, Cliente>();
+		Map<Integer, Pessoa> mapaPessoa = new HashMap<Integer, Pessoa>();
 		try {
-			mapaCliente = (Map<Integer, Cliente>) BancoDeDados.buscaBancoDadosClientes();
-			Collection contC = mapaCliente.values();
+			mapaPessoa = (Map<Integer, Pessoa>) BancoDeDados.buscaBDPessoa();
+			Collection contC = mapaPessoa.values();
 			Iterator interador = contC.iterator();
 			while (interador.hasNext()) {
-				Cliente clienteTemp = (Cliente) interador.next();
-				modelo.addRow(new Object[] { clienteTemp.getIdCliente(), clienteTemp.getNome(), clienteTemp.getCpf(),
-						clienteTemp.getTelefone(), clienteTemp.getEmail(), clienteTemp.getEndereco() });
+				Pessoa pTemp = (Pessoa) interador.next();
+				modelo.addRow(new Object[] { pTemp.getIdPessoa(), pTemp.getNome(), pTemp.getCpf(),
+						pTemp.getTelefone(), pTemp.getEmail(), pTemp.getEndereco(), pTemp.getTipoSangue() });
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -73,16 +80,18 @@ public class TelaDoacao extends JInternalFrame {
 		tablePesquista1.addMouseListener(new MouseListener() {
 			public void mouseClicked(MouseEvent e) {
 				int k = tablePesquista1.getSelectedRow();
-				int idCliente = (int) tablePesquista1.getValueAt(k, 0);
+				int idPessoa = (int) tablePesquista1.getValueAt(k, 0);
 				String nome = (String) tablePesquista1.getValueAt(k, 1);
 				String cpf = (String) tablePesquista1.getValueAt(k, 2);
 				String telefone = (String) tablePesquista1.getValueAt(k, 3);
 				String email = (String) tablePesquista1.getValueAt(k, 4);
 				String endereco = (String) tablePesquista1.getValueAt(k, 5);
+				String tipoSangue = (String) tablePesquista1.getValueAt(k, 6);
+				
 
-				Cliente c = new Cliente(idCliente, nome, cpf, telefone, email, endereco);
-				CadastroDeClientes.clienteVenda = c;
-				tfPessoa.setText(CadastroDeClientes.clienteVenda.getNome());
+				Pessoa p = new Pessoa(idPessoa, nome, cpf, telefone, email, endereco, tipoSangue);
+				CadastroDePessoa.pessoaDoacao = p;
+				tfPessoa.setText(CadastroDePessoa.pessoaDoacao.getNome());
 
 			}
 
@@ -100,9 +109,9 @@ public class TelaDoacao extends JInternalFrame {
 		});
 	}
 
-	public void loadTableItensVenda() throws Exception {
+	/*public void loadTableItensVenda() throws Exception {
 		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {},
-				new String[] { "Id Item", "Descrição", "Quantidade Venda", "Valor" });
+				new String[] { "Id Doacao", "Tipo Sangue", "Quantidade Doada"});
 
 		try {
 
@@ -148,21 +157,20 @@ public class TelaDoacao extends JInternalFrame {
 		});
 
 	}
-
+*/
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void loadTableProduto(String buscar) throws Exception {
 		DefaultTableModel modelo = new DefaultTableModel(new Object[][] {},
-				new String[] { "ID", "Nome", "Quantidade Estoque", "Valor" });
+				new String[] { "ID", "Tipo Sanguineo", "Estoque de Sangue"});
 
-		Map<Integer, Produto> mapaProduto = new HashMap<Integer, Produto>();
+		Map<Integer, TipoSangue> mapaTpSangue = new HashMap<Integer, TipoSangue>();
 		try {
-			mapaProduto = (Map<Integer, Produto>) BancoDeDados.buscaBancoDadosProdutos();
-			Collection contC = mapaProduto.values();
+			mapaTpSangue = (Map<Integer, TipoSangue>) BancoDeDados.buscaDBTipoSangue();
+			Collection contC = mapaTpSangue.values();
 			Iterator interador = contC.iterator();
 			while (interador.hasNext()) {
-				Produto produtoTemp = (Produto) interador.next();
-				modelo.addRow(new Object[] { produtoTemp.getIdProduto(), produtoTemp.getNomeProduto(),
-						produtoTemp.getQuantidade(), produtoTemp.getValorProduto() });
+				TipoSangue tpSangueTemp = (TipoSangue) interador.next();
+				modelo.addRow(new Object[] { tpSangueTemp.getIdTpSangue(), tpSangueTemp.getTipoSangue(), tpSangueTemp.getQuantidade() });
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -174,12 +182,11 @@ public class TelaDoacao extends JInternalFrame {
 				int k = tablePesquista.getSelectedRow();
 				int id = (int) tablePesquista.getValueAt(k, 0);
 				String nome = (String) tablePesquista.getValueAt(k, 1);
-				int quant = (int) tablePesquista.getValueAt(k, 2);
-				double valor = (double) tablePesquista.getValueAt(k, 3);
+				double quant = (double) tablePesquista.getValueAt(k, 2);
 
-				Produto p = new Produto(id, nome, quant, valor);
-				CadastroDeVendas.produtoVenda = p;
-				tfProduto.setText(CadastroDeVendas.produtoVenda.getNomeProduto());
+				TipoSangue tSangue = new TipoSangue(id, nome, quant);
+				CadastroTipoSangue.tpSangueDoar = tSangue;
+				tfProduto.setText(CadastroTipoSangue.tpSangueDoar.getTipoSangue());
 
 			}
 
@@ -198,6 +205,7 @@ public class TelaDoacao extends JInternalFrame {
 	}
 
 	JScrollPane scrollPane = new JScrollPane();
+	private JTextField tfDtDoacao;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -230,7 +238,7 @@ public class TelaDoacao extends JInternalFrame {
 		panel.setLayout(null);
 
 		JLabel lbCliente = new JLabel("Pessoa:");
-		lbCliente.setBounds(39, 11, 42, 22);
+		lbCliente.setBounds(39, 11, 132, 22);
 		panel.add(lbCliente);
 
 		tfPessoa = new JTextField();
@@ -304,17 +312,12 @@ public class TelaDoacao extends JInternalFrame {
 		JButton btnSalvar = new JButton("Add Doa\u00E7\u00E3o");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ItemVenda ivTemp = new ItemVenda();
-				ivTemp.setProduto(CadastroDeVendas.produtoVenda);
-				ivTemp.setQuantidade(Integer.parseInt(tfQuantidade.getText()));
-				ivTemp.setIdItem(venda.listaVenda.size() + 1);
-				venda.listaVenda.add(ivTemp);
-				try {
-					loadTableItensVenda();
-					tfValorTotal.setText(String.valueOf(venda.getTotalVenda()));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				NovaDoacao doarTemp = new NovaDoacao();
+				doarTemp.setDoacao(CadastroDeDoacao.doacaoSangue);
+				doarTemp.setQtd(Double.parseDouble(tfQuantidade.getText()));
+				doarTemp.setDtDoacao(tfDtDoacao.getText());
+				doarTemp.setIdDoacao(doacao.listaDoacao.size() + 1);
+				doacao.listaDoacao.add(doarTemp);
 			}
 		});
 		btnSalvar.setBounds(497, 83, 138, 23);
@@ -323,31 +326,39 @@ public class TelaDoacao extends JInternalFrame {
 		JButton btnFinalizarVenda = new JButton("Finalizar Doa\u00E7\u00E3o");
 		btnFinalizarVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				CadastroDeVendas cadastroDeVendas = new CadastroDeVendas();
-				venda.setClienteVenda(CadastroDeClientes.clienteVenda);
-				venda.setValorTotal(Double.valueOf(tfValorTotal.getText()));
-				venda.getClienteVenda().setTotalCompras(venda.getValorTotal());
+				CadastroDeDoacao cadastroDoacao = new CadastroDeDoacao();
+				
+				doacao.setPessoaDoar(CadastroDePessoa.pessoaDoacao);
 				try {
-					cadastroDeVendas.adicionaProduto(venda);
-					venda.listaVenda.clear();
+					cadastroDoacao.adicionaDoacao(doacao);
+					doacao.listaDoacao.clear();
 
 				} catch (Exception e1) {
 					e1.printStackTrace();
-				}
+				}/*
 				try {
 					loadTableItensVenda();
 					tfValorTotal.setText("" + venda.getValorTotal());
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				}*/
 			}
 		});
-		btnFinalizarVenda.setBounds(320, 362, 120, 32);
+		btnFinalizarVenda.setBounds(320, 362, 155, 32);
 		panel.add(btnFinalizarVenda);
 		
 		JLabel lblDoeSangueDoe = new JLabel("Doe sangue. Sangue \u00E9 vida.");
-		lblDoeSangueDoe.setBounds(10, 380, 138, 14);
+		lblDoeSangueDoe.setBounds(10, 380, 224, 14);
 		panel.add(lblDoeSangueDoe);
+		
+		JLabel lbDtDoacao = new JLabel("Data da Doa\u00E7\u00E3o:");
+		lbDtDoacao.setBounds(404, 11, 132, 22);
+		panel.add(lbDtDoacao);
+		
+		tfDtDoacao = new JTextField();
+		tfDtDoacao.setColumns(10);
+		tfDtDoacao.setBounds(404, 33, 300, 22);
+		panel.add(tfDtDoacao);
 
 		lbVendas = new Label("Tela de Doa\u00E7\u00E3o");
 		lbVendas.setForeground(Color.WHITE);

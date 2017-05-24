@@ -131,7 +131,7 @@ public class BancoDeDados implements Serializable {
 	
 	@SuppressWarnings("unchecked")
 	public static Object buscaBBDoacao() throws Exception {
-		FileInputStream abrirArquivo = new FileInputStream("arquivosBD\\Doacao.dat");
+		FileInputStream abrirArquivo = new FileInputStream("arqBD\\Doacao.dat");
 		ObjectInputStream abrirObjeto = new ObjectInputStream(abrirArquivo);
 
 		Object mapDoacao = (Map<Integer, Doacao>) abrirObjeto.readObject();

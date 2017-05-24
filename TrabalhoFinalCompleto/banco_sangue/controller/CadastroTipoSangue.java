@@ -13,6 +13,7 @@ public class CadastroTipoSangue implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Map<Integer, TipoSangue> cadastroTipoSangue = new HashMap<Integer, TipoSangue>();
 	public static int finalTipoSangue = 1;
+	public static TipoSangue tpSangueDoar;
 	
 	@SuppressWarnings("unchecked")
 	public static int getTamanhoBancoTpSangue() throws Exception {
