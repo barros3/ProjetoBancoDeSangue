@@ -62,10 +62,13 @@ public class TelaListaCadastroDoacao extends JInternalFrame {
 			Collection contV = mapaDoacao.values();
 			Iterator interador = contV.iterator();
 			while (interador.hasNext()) {
-				NovaDoacao NovaDoacaoTemp = (NovaDoacao) interador.next();
+				/*NovaDoacao NovaDoacaoTemp = (NovaDoacao) interador.next();
 				modelo.addRow(new Object[] { NovaDoacaoTemp.getIdDoacao(), NovaDoacaoTemp.getPessoaDoar().getNome(), NovaDoacaoTemp.getPessoaDoar().getCpf(), 
 						NovaDoacaoTemp.getPessoaDoar().getTelefone(), NovaDoacaoTemp.getPessoaDoar().getEmail(), NovaDoacaoTemp.getPessoaDoar().getEndereco(),
-						NovaDoacaoTemp.getPessoaDoar().getTipoSangue(), NovaDoacaoTemp.getDoacao().getDtDoacao() });
+						NovaDoacaoTemp.getPessoaDoar().getTipoSangue(), NovaDoacaoTemp.getDoacao().getDtDoacao() });*/
+				Doacao doacaoTemp = (Doacao) interador.next();
+				modelo.addRow(new Object[] { doacaoTemp.getIdDoacao(), doacaoTemp.getPessoaDoar().getNome(), doacaoTemp.getPessoaDoar().getCpf(), 
+						doacaoTemp.getPessoaDoar().getTelefone(), doacaoTemp.getPessoaDoar().getEmail(), doacaoTemp.getPessoaDoar().getEndereco(), doacaoTemp.getPessoaDoar().getTipoSangue(), doacaoTemp.getQntDoada(), doacaoTemp.getDtDoacao() });
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());

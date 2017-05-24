@@ -109,10 +109,11 @@ public class TelaDoacao extends JInternalFrame {
 		try {
 
 			for (int i = 0; i < doacao.getListaDoacao().size(); i++) {
-				NovaDoacao doacaoTemp = doacao.getListaDoacao().get(i);
+				
+				Doacao doacaoTemp = doacao.getListaDoacao().get(i);
 				modelo.addRow(new Object[] { doacaoTemp.getIdDoacao(), doacaoTemp.getPessoaDoar().getNome(), doacaoTemp.getPessoaDoar().getCpf(), 
 						doacaoTemp.getPessoaDoar().getTelefone(), doacaoTemp.getPessoaDoar().getEmail(), doacaoTemp.getPessoaDoar().getEndereco(),
-						doacaoTemp.getPessoaDoar().getTipoSangue(), doacaoTemp.getQtd(), doacaoTemp.getDtDoacao() });
+						doacaoTemp.getPessoaDoar().getTipoSangue(), doacaoTemp.getQntDoada(), doacaoTemp.getDtDoacao() });
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
@@ -305,10 +306,10 @@ public class TelaDoacao extends JInternalFrame {
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				NovaDoacao doarTemp = new NovaDoacao();
+				doarTemp.setIdDoacao(doacao.listaDoacao.size() + 1);
 				doarTemp.setDoacao(CadastroDeDoacao.doacaoSangue);
 				doarTemp.setQtd(Double.parseDouble(tfQuantidade.getText()));
 				doarTemp.setDtDoacao(tfDtDoacao.getText());
-				doarTemp.setIdDoacao(doacao.listaDoacao.size() + 1);
 				doacao.listaDoacao.add(doarTemp);
 			}
 		});

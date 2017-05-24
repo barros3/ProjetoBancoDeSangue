@@ -9,8 +9,9 @@ public class Doacao implements Serializable {
 	public ArrayList<NovaDoacao> listaDoacao;
 	private Pessoa pessoaDoar;
 	private int idDoacao;
+	private double qntDoada;
 	private String dtDoacao;
-	
+
 	public Doacao(){
 		this.listaDoacao = new ArrayList<NovaDoacao>();
 		setPessoaDoar(new Pessoa());
@@ -36,6 +37,14 @@ public class Doacao implements Serializable {
 	public void setIdDoacao(int idDoacao) {
 		this.idDoacao = idDoacao;
 	}
+	
+	public double getQntDoada() {
+		return qntDoada;
+	}
+
+	public void setQntDoada(double qntDoada) {
+		this.qntDoada = qntDoada;
+	}
 
 	public String getDtDoacao() {
 		return dtDoacao;
@@ -44,6 +53,7 @@ public class Doacao implements Serializable {
 	public void setDtDoacao(String dtDoacao) {
 		this.dtDoacao = dtDoacao;
 	}
+
 	
 	public static int compareToId(int id, Doacao o) {
 		if (id < o.pessoaDoar.getIdPessoa()) {
